@@ -1,6 +1,210 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
-/* Optional: Smooth scrolling for anchor links */
+
+/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
+}
+
+/* Global cursor style */
+* {
+  cursor: default;
+}
+
+a, button {
+  cursor: pointer;
+}
+
+/* Subtle grid background pattern for dark mode */
+body {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+}
+
+/* Animated grid background */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.dark .grid-bg {
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Subtle radial gradient overlay */
+.radial-overlay {
+  background: radial-gradient(circle at 50% 0%, rgba(120, 119, 198, 0.05), transparent 50%);
+}
+
+.dark .radial-overlay {
+  background: radial-gradient(circle at 50% 0%, rgba(120, 119, 198, 0.08), transparent 50%);
+}
+
+/* Scanline effect for retro CRT feel */
+.scanlines {
+  position: relative;
+  overflow: hidden;
+}
+
+.scanlines::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.015) 2px,
+    rgba(0, 0, 0, 0.015) 4px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.dark .scanlines::before {
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255, 255, 255, 0.012) 2px,
+    rgba(255, 255, 255, 0.012) 4px
+  );
+}
+
+/* Typing cursor animation */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.cursor-blink {
+  animation: blink 1s infinite;
+}
+
+/* Typing effect animation */
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* Subtle glow effect */
+.glow-text {
+  text-shadow: 0 0 20px rgba(148, 163, 184, 0.1);
+}
+
+.dark .glow-text {
+  text-shadow: 0 0 30px rgba(148, 163, 184, 0.15);
+}
+
+/* Subtle hover lift for cards */
+.card-lift {
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s;
+}
+
+.card-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+}
+
+.dark .card-lift:hover {
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
+}
+
+/* Flicker animation for terminal feel */
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  41.99% { opacity: 1; }
+  42% { opacity: 0.8; }
+  43% { opacity: 1; }
+  47.99% { opacity: 1; }
+  48% { opacity: 0.9; }
+  49% { opacity: 1; }
+}
+
+.flicker {
+  animation: flicker 4s infinite;
+}
+
+/* Gradient border effect */
+.gradient-border {
+  position: relative;
+  background: linear-gradient(var(--bg-color, #0f1419), var(--bg-color, #0f1419)) padding-box,
+              linear-gradient(135deg, rgba(120, 119, 198, 0.2), rgba(148, 163, 184, 0.05)) border-box;
+  border: 1px solid transparent;
+}
+
+/* Pulse dot */
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.7; }
+}
+
+.pulse-dot {
+  animation: pulse-dot 2s infinite;
+}
+
+/* Slide in from left animation */
+@keyframes slide-in-left {
+  from { transform: translateX(-20px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.slide-in {
+  animation: slide-in-left 0.6s ease-out backwards;
+}
+
+/* Fade in animation */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fade-in 0.8s ease-out backwards;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.2);
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.4);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.15);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.3);
+}
+
+/* Selection style */
+::selection {
+  background: rgba(120, 119, 198, 0.3);
+  color: inherit;
+}
+
+.dark ::selection {
+  background: rgba(120, 119, 198, 0.4);
+  color: #f1f5f9;
 }
